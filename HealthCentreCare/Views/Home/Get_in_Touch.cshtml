@@ -1,0 +1,95 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	Layout = "~/Views/Shared/_CommonLayout2.cshtml";
+}
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Contact Support</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Name -->
+            <div class="col-md-6">
+                <label>Name</label>
+                @Html.TextBox("UserName", null, new { @class = "form-control", placeholder = "Enter Your Name" })
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+                <label>Email</label>
+                @Html.TextBox("UserEmail", null, new { @class = "form-control", placeholder = "Enter Your Email", type = "email" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Phone -->
+            <div class="col-md-6">
+                <label>Phone</label>
+                @Html.TextBox("UserPhone", null, new { @class = "form-control", placeholder = "Enter Your Phone Number", type = "tel" })
+            </div>
+
+            <!-- Query Type -->
+            <div class="col-md-6">
+                <label>Query Type</label>
+                @Html.DropDownList("QueryType", new SelectList(new[] { "Select Type", "Support", "Sales", "Logistics" }), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Message -->
+            <div class="col-md-12">
+                <label>Message</label>
+                @Html.TextArea("UserMessage", new { @class = "form-control", placeholder = "Enter Your Message", rows = "4" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Support Dashboard</h4>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Query Type</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic data population here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Sales & Logistics Contact Details</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <h5>Sales</h5>
+                <p><strong>Phone:</strong> +123-456-7890</p>
+                <p><strong>Email:</strong> sales@company.com</p>
+            </div>
+            <div class="col-md-6">
+                <h5>Logistics</h5>
+                <p><strong>Phone:</strong> +987-654-3210</p>
+                <p><strong>Email:</strong> logistics@company.com</p>
+            </div>
+        </div>
+    </div>
+</div>

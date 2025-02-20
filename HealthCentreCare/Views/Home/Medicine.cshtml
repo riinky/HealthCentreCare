@@ -1,0 +1,377 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Center Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Health Center Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="home-btn">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="medicines-btn">Medicines</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="add-medicine-btn">Add Medicine</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="search-btn">Search</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <!-- Dashboard / Home Page -->
+        <div id="home-page">
+            <h1>Dashboard</h1>
+            <p>Welcome to the Health Center Management System.</p>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Medicine Name</th>
+                        <th>Quantity</th>
+                        <th>Manufacturing Date</th>
+                        <th>Expiration Date</th>
+                    </tr>
+                </thead>
+                <tbody id="medicine-table-body">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Medicines Page -->
+        <div id="medicines-page" style="display: none;">
+            <h1>Medicines</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Medicine Name</th>
+                        <th>Quantity</th>
+                        <th>Manufacturing Date</th>
+                        <th>Expiration Date</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="medicines-table-body">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add Medicine Page -->
+        <div id="add-medicine-page" style="display: none;">
+            <h1>Add Medicine</h1>
+            <form id="add-medicine-form">
+                <div class="mb-3">
+                    <label for="medicine-name" class="form-label">Medicine Name</label>
+                    <input type="text" class="form-control" id="medicine-name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="quantity" required>
+                </div>
+                <div class="mb-3">
+                    <label for="manufacturing-date" class="form-label">Manufacturing Date</label>
+                    <input type="date" class="form-control" id="manufacturing-date" required>
+                </div>
+                <div class="mb-3">
+                    <label for="expiration-date" class="form-label">Expiration Date</label>
+                    <input type="date" class="form-control" id="expiration-date" required>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" class="form-control" id="price" step="0.01" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Medicine</button>
+            </form>
+        </div>
+
+        <!-- Update Medicine Page -->
+        <div id="update-medicine-page" style="display: none;">
+            <h1>Update Medicine</h1>
+            <form id="update-medicine-form">
+                <div class="mb-3">
+                    <label for="update-medicine-name" class="form-label">Medicine Name</label>
+                    <input type="text" class="form-control" id="update-medicine-name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="update-quantity" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="update-quantity" required>
+                </div>
+                <div class="mb-3">
+                    <label for="update-manufacturing-date" class="form-label">Manufacturing Date</label>
+                    <input type="date" class="form-control" id="update-manufacturing-date" required>
+                </div>
+                <div class="mb-3">
+                    <label for="update-expiration-date" class="form-label">Expiration Date</label>
+                    <input type="date" class="form-control" id="update-expiration-date" required>
+                </div>
+                <div class="mb-3">
+                    <label for="update-price" class="form-label">Price</label>
+                    <input type="number" class="form-control" id="update-price" step="0.01" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Medicine</button>
+            </form>
+        </div>
+
+        <!-- Search Page -->
+        <div id="search-page" style="display: none;">
+            <h1>Search</h1>
+            <form id="search-form">
+                <div class="mb-3">
+                    <label for="search-medicine-name" class="form-label">Medicine Name</label>
+                    <input type="text" class="form-control" id="search-medicine-name" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <table class="table table-striped" id="search-results-table">
+                <thead>
+                    <tr>
+                        <th>Medicine Name</th>
+                        <th>Quantity</th>
+                        <th>Manufacturing Date</th>
+                        <th>Expiration Date</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="search-results-table-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Updated initial data with manufacturingDate and price
+        let medicines = [
+            { name: "Paracetamol", quantity: 100, manufacturingDate: "2023-01-01", expirationDate: "2024-01-01", price: 2.50 },
+            { name: "Ibuprofen", quantity: 50, manufacturingDate: "2023-02-01", expirationDate: "2024-02-01", price: 3.00 },
+            { name: "Aspirin", quantity: 200, manufacturingDate: "2023-03-01", expirationDate: "2024-03-01", price: 1.50 }
+        ];
+
+        // Navigation Buttons
+        const homeBtn = document.getElementById("home-btn");
+        const medicinesBtn = document.getElementById("medicines-btn");
+        const addMedicineBtn = document.getElementById("add-medicine-btn");
+        const searchBtn = document.getElementById("search-btn");
+        const homePage = document.getElementById("home-page");
+        const medicinesPage = document.getElementById("medicines-page");
+        const addMedicinePage = document.getElementById("add-medicine-page");
+        const updateMedicinePage = document.getElementById("update-medicine-page");
+        const searchPage = document.getElementById("search-page");
+
+        homeBtn.addEventListener("click", () => {
+            homePage.style.display = "block";
+            medicinesPage.style.display = "none";
+            addMedicinePage.style.display = "none";
+            updateMedicinePage.style.display = "none";
+            searchPage.style.display = "none";
+            displayMedicines();
+        });
+
+        medicinesBtn.addEventListener("click", () => {
+            homePage.style.display = "none";
+            medicinesPage.style.display = "block";
+            addMedicinePage.style.display = "none";
+            updateMedicinePage.style.display = "none";
+            searchPage.style.display = "none";
+            displayMedicinesTable();
+        });
+
+        addMedicineBtn.addEventListener("click", () => {
+            homePage.style.display = "none";
+            medicinesPage.style.display = "none";
+            addMedicinePage.style.display = "block";
+            updateMedicinePage.style.display = "none";
+            searchPage.style.display = "none";
+        });
+
+        searchBtn.addEventListener("click", () => {
+            homePage.style.display = "none";
+            medicinesPage.style.display = "none";
+            addMedicinePage.style.display = "none";
+            updateMedicinePage.style.display = "none";
+            searchPage.style.display = "block";
+        });
+
+        // Add Medicine Form Submission
+        document.getElementById("add-medicine-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const medicineName = document.getElementById("medicine-name").value;
+            const quantity = document.getElementById("quantity").value;
+            const manufacturingDate = document.getElementById("manufacturing-date").value;
+            const expirationDate = document.getElementById("expiration-date").value;
+            const price = document.getElementById("price").value;
+            medicines.push({
+                name: medicineName,
+                quantity: quantity,
+                manufacturingDate: manufacturingDate,
+                expirationDate: expirationDate,
+                price: price
+            });
+            displayMedicinesTable();
+            document.getElementById("add-medicine-form").reset();
+        });
+
+        // Update Medicine Form Submission
+        document.getElementById("update-medicine-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const updateMedicineName = document.getElementById("update-medicine-name").value;
+            const updateQuantity = document.getElementById("update-quantity").value;
+            const updateManufacturingDate = document.getElementById("update-manufacturing-date").value;
+            const updateExpirationDate = document.getElementById("update-expiration-date").value;
+            const updatePrice = document.getElementById("update-price").value;
+            for (let i = 0; i < medicines.length; i++) {
+                if (medicines[i].name === updateMedicineName) {
+                    medicines[i].quantity = updateQuantity;
+                    medicines[i].manufacturingDate = updateManufacturingDate;
+                    medicines[i].expirationDate = updateExpirationDate;
+                    medicines[i].price = updatePrice;
+                }
+            }
+            displayMedicinesTable();
+            document.getElementById("update-medicine-form").reset();
+        });
+
+        // Search Form Submission
+        document.getElementById("search-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const searchMedicineName = document.getElementById("search-medicine-name").value;
+            const searchResults = medicines.filter(medicine => medicine.name.includes(searchMedicineName));
+            displaySearchResults(searchResults);
+        });
+
+        // Display Dashboard Medicines (Home Page)
+        function displayMedicines() {
+            const tableBody = document.getElementById("medicine-table-body");
+            tableBody.innerHTML = "";
+            for (let i = 0; i < medicines.length; i++) {
+                const row = document.createElement("tr");
+                const nameCell = document.createElement("td");
+                const quantityCell = document.createElement("td");
+                const manufacturingDateCell = document.createElement("td");
+                const expirationDateCell = document.createElement("td");
+
+                nameCell.textContent = medicines[i].name;
+                quantityCell.textContent = medicines[i].quantity;
+                manufacturingDateCell.textContent = medicines[i].manufacturingDate;
+                expirationDateCell.textContent = medicines[i].expirationDate;
+
+                row.appendChild(nameCell);
+                row.appendChild(quantityCell);
+                row.appendChild(manufacturingDateCell);
+                row.appendChild(expirationDateCell);
+                tableBody.appendChild(row);
+            }
+        }
+
+        // Display Medicines Table (Medicines Page)
+        function displayMedicinesTable() {
+            const tableBody = document.getElementById("medicines-table-body");
+            tableBody.innerHTML = "";
+            for (let i = 0; i < medicines.length; i++) {
+                const row = document.createElement("tr");
+                const nameCell = document.createElement("td");
+                const quantityCell = document.createElement("td");
+                const manufacturingDateCell = document.createElement("td");
+                const expirationDateCell = document.createElement("td");
+                const priceCell = document.createElement("td");
+                const actionsCell = document.createElement("td");
+
+                nameCell.textContent = medicines[i].name;
+                quantityCell.textContent = medicines[i].quantity;
+                manufacturingDateCell.textContent = medicines[i].manufacturingDate;
+                expirationDateCell.textContent = medicines[i].expirationDate;
+                priceCell.textContent = medicines[i].price;
+
+                const updateButton = document.createElement("button");
+                updateButton.textContent = "Update";
+                updateButton.classList.add("btn", "btn-sm", "btn-primary", "me-2");
+                updateButton.addEventListener("click", () => {
+                    document.getElementById("update-medicine-name").value = medicines[i].name;
+                    document.getElementById("update-quantity").value = medicines[i].quantity;
+                    document.getElementById("update-manufacturing-date").value = medicines[i].manufacturingDate;
+                    document.getElementById("update-expiration-date").value = medicines[i].expirationDate;
+                    document.getElementById("update-price").value = medicines[i].price;
+                    updateMedicinePage.style.display = "block";
+                    medicinesPage.style.display = "none";
+                });
+
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.classList.add("btn", "btn-sm", "btn-danger");
+                deleteButton.addEventListener("click", () => {
+                    medicines.splice(i, 1);
+                    displayMedicinesTable();
+                });
+
+                actionsCell.appendChild(updateButton);
+                actionsCell.appendChild(deleteButton);
+
+                row.appendChild(nameCell);
+                row.appendChild(quantityCell);
+                row.appendChild(manufacturingDateCell);
+                row.appendChild(expirationDateCell);
+                row.appendChild(priceCell);
+                row.appendChild(actionsCell);
+
+                tableBody.appendChild(row);
+            }
+        }
+
+        // Display Search Results
+        function displaySearchResults(searchResults) {
+            const tableBody = document.getElementById("search-results-table-body");
+            tableBody.innerHTML = "";
+            for (let i = 0; i < searchResults.length; i++) {
+                const row = document.createElement("tr");
+                const nameCell = document.createElement("td");
+                const quantityCell = document.createElement("td");
+                const manufacturingDateCell = document.createElement("td");
+                const expirationDateCell = document.createElement("td");
+                const priceCell = document.createElement("td");
+
+                nameCell.textContent = searchResults[i].name;
+                quantityCell.textContent = searchResults[i].quantity;
+                manufacturingDateCell.textContent = searchResults[i].manufacturingDate;
+                expirationDateCell.textContent = searchResults[i].expirationDate;
+                priceCell.textContent = searchResults[i].price;
+
+                row.appendChild(nameCell);
+                row.appendChild(quantityCell);
+                row.appendChild(manufacturingDateCell);
+                row.appendChild(expirationDateCell);
+                row.appendChild(priceCell);
+                tableBody.appendChild(row);
+            }
+        }
+    </script>
+</body>
+</html>

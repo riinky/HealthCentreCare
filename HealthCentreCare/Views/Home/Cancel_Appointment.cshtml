@@ -1,0 +1,87 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_CommonLayout2.cshtml";
+}
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Cancel Appointment</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Appointment ID -->
+            <div class="col-md-6">
+                <label>Appointment ID</label>
+                @Html.TextBox("AppointmentID", null, new { @class = "form-control", placeholder = "Enter Appointment ID" })
+            </div>
+
+            <!-- Reason for Cancellation -->
+            <div class="col-md-6">
+                <label>Reason for Cancellation</label>
+                @Html.DropDownList("CancelReason", new SelectList(new[] {
+                "Select Reason",
+                "Unexpected Work Conflict",
+                "Health or Medical Emergency",
+                "Family or Personal Emergency",
+                "Transportation Issues",
+                "Scheduling Conflict",
+                "Weather Conditions",
+                "Technical Difficulties",
+                "Other Personal Reasons"
+                }), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Refund Method -->
+            <div class="col-md-6">
+                <label>Refund Method</label>
+                @Html.DropDownList("RefundMethod", new SelectList(new[] { "Select Refund Method", "Original Payment Method", "Bank Transfer" }), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-warning btn-lg">Cancel Appointment</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Cancel Appointment Card -->
+@* <div class="card mt-4">
+    <div class="card-header">
+        <h4>Cancel Appointment</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Appointment ID -->
+            <div class="col-md-6">
+                <label>Appointment ID</label>
+                @Html.TextBox("AppointmentID", null, new { @class = "form-control", placeholder = "Enter Appointment ID" })
+            </div>
+
+            <!-- Reason for Cancellation -->
+            <div class="col-md-6">
+                <label>Reason for Cancellation</label>
+                @Html.DropDownList("CancelReason", new SelectList(new[] { "Select Reason", "Reschedule", "Emergency", "Personal Reasons" }), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Refund Method -->
+            <div class="col-md-6">
+                <label>Refund Method</label>
+                @Html.DropDownList("RefundMethod", new SelectList(new[] { "Select Refund Method", "Original Payment Method", "Bank Transfer" }), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-warning btn-lg">Cancel Appointment</button>
+        </div>
+    </div>
+</div> *@
+

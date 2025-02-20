@@ -1,0 +1,112 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_CommonLayout2.cshtml";
+}
+
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>OPD Module</h4>
+    </div>
+    <div class="card-body">
+
+        <!-- OPD Registration -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>OPD Registration</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label>Patient ID</label>
+                        @Html.TextBox("PatientID", null, new { @class = "form-control", placeholder = "Enter Patient ID" })
+                    </div>
+                    <div class="col-md-4">
+                        <label>Symptoms</label>
+                        @Html.TextBox("Symptoms", null, new { @class = "form-control", placeholder = "Enter Symptoms" })
+                    </div>
+                    <div class="col-md-4">
+                        <label>Priority Level</label>
+                        @Html.DropDownList("PriorityLevel", new SelectList(new[] { "Emergency", "General" }), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success">Register</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- OPD Billing -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>OPD Billing</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label>Consultation Fee</label>
+                        @Html.TextBox("ConsultationFee", null, new { @class = "form-control", placeholder = "Enter Consultation Fee" })
+                    </div>
+                    <div class="col-md-4">
+                        <label>Test Charges</label>
+                        @Html.TextBox("TestCharges", null, new { @class = "form-control", placeholder = "Enter Test Charges" })
+                    </div>
+                    <div class="col-md-4">
+                        <label>Medicine Costs</label>
+                        @Html.TextBox("MedicineCosts", null, new { @class = "form-control", placeholder = "Enter Medicine Costs" })
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Generate Bill</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- OPD Reports -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>OPD Reports</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label>Report Type</label>
+                        @Html.DropDownList("ReportType", new SelectList(new[] { "Daily Footfall", "Doctor-wise Consultations", "Department-wise Stats" }), new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-6">
+                        <label>Select Date</label>
+                        @Html.TextBox("ReportDate", null, new { @class = "form-control", type = "date" })
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-info">Generate Report</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transfer to IPD -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Transfer to IPD</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label>Patient ID</label>
+                        @Html.TextBox("TransferPatientID", null, new { @class = "form-control", placeholder = "Enter Patient ID" })
+                    </div>
+                    <div class="col-md-6">
+                        <label>Reason for Transfer</label>
+                        @Html.TextBox("TransferReason", null, new { @class = "form-control", placeholder = "Enter Reason for Transfer" })
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-warning">Transfer to IPD</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

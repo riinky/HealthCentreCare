@@ -1,0 +1,239 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donor and Receiver App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        <
+        .modal-content {
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Blood Donor and Receiver App</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#donorRegistrationModal">Register as Donor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#receiverRegistrationModal">Register as Receiver</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#searchModal">Search Donors</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h2> Dashboard </h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Donor Name</th>
+                            <th>Blood Type</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody id="donorInfo">
+                    </tbody>
+                </table>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Receiver Name</th>
+                            <th>Required Blood Type</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody id="receiverInfo">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Donor Registration Modal -->
+    <div class="modal fade" id="donorRegistrationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Donor Registration</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="donorName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="donorName" placeholder="Enter your name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="donorBloodType" class="form-label">Blood Type</label>
+                            <select class="form-select" id="donorBloodType">
+                                <option selected>Choose a blood type</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="donorLocation" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="donorLocation" placeholder="Enter your location">
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="registerDonor()">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Receiver Registration Modal -->
+    <div class="modal fade" id="receiverRegistrationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Receiver Registration</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="receiverName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="receiverName" placeholder="Enter your name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="receiverBloodType" class="form-label">Required Blood Type</label>
+                            <select class="form-select" id="receiverBloodType">
+                                <option selected>Choose a blood type</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="receiverLocation" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="receiverLocation" placeholder="Enter your location">
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="registerReceiver()">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Donors Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Search Donors</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="searchBloodType" class="form-label">Blood Type</label>
+                            <select class="form-select" id="searchBloodType">
+                                <option selected>Choose a blood type</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="searchLocation" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="searchLocation" placeholder="Enter location">
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="searchDonors()">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+        let donors = [];
+        let receivers = [];
+        function registerDonor() {
+            let donorName = document.getElementById("donorName").value;
+            let donorBloodType = document.getElementById("donorBloodType").value;
+            let donorLocation = document.getElementById("donorLocation").value;
+            donors.push({name: donorName, bloodType: donorBloodType, location: donorLocation});
+            displayDonors();
+            document.getElementById("donorName").value = "";
+            document.getElementById("donorBloodType").value = "";
+            document.getElementById("donorLocation").value = "";
+        }
+        function registerReceiver() {
+            let receiverName = document.getElementById("receiverName").value;
+            let receiverBloodType = document.getElementById("receiverBloodType").value;
+            let receiverLocation = document.getElementById("receiverLocation").value;
+            receivers.push({name: receiverName, bloodType: receiverBloodType, location: receiverLocation});
+            displayReceivers();
+            document.getElementById("receiverName").value = "";
+            document.getElementById("receiverBloodType").value = "";
+            document.getElementById("receiverLocation").value = "";
+        }
+        function searchDonors() {
+            let searchBloodType = document.getElementById("searchBloodType").value;
+            let searchLocation = document.getElementById("searchLocation").value;
+            let results = donors.filter(donor => donor.bloodType === searchBloodType && donor.location === searchLocation);
+            let html = "";
+            results.forEach(result => {
+                html += `<tr><td>${result.name}</td><td>${result.bloodType}</td><td>${result.location}</td></tr>`;
+            });
+            document.getElementById("donorInfo").innerHTML = html;
+        }
+        function displayDonors() {
+            let html = "";
+            donors.forEach(donor => {
+                html += `<tr><td>${donor.name}</td><td>${donor.bloodType}</td><td>${donor.location}</td></tr>`;
+            });
+            document.getElementById("donorInfo").innerHTML = html;
+        }
+        function displayReceivers() {
+            let html = "";
+            receivers.forEach(receiver => {
+                html += `<tr><td>${receiver.name}</td><td>${receiver.bloodType}</td><td>${receiver.location}</td></tr>`;
+            });
+            document.getElementById("receiverInfo").innerHTML = html;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	Layout = "~/Views/Shared/_CommonLayout2.cshtml";
+}
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>IPD Admission</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Patient ID -->
+            <div class="col-md-6">
+                <label>Patient ID</label>
+                @Html.TextBox("PatientID", null, new { @class = "form-control", placeholder = "Enter Patient ID" })
+            </div>
+
+            <!-- Ward/Bed No. -->
+            <div class="col-md-6">
+                <label>Ward/Bed No.</label>
+                @Html.TextBox("BedNo", null, new { @class = "form-control", placeholder = "Enter Ward/Bed No." })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Admission Reason -->
+            <div class="col-md-6">
+                <label>Admission Reason</label>
+                @Html.TextBox("AdmissionReason", null, new { @class = "form-control", placeholder = "Enter Reason for Admission" })
+            </div>
+
+            <!-- Attending Doctor -->
+            <div class="col-md-6">
+                <label>Attending Doctor</label>
+                @Html.TextBox("AttendingDoctor", null, new { @class = "form-control", placeholder = "Enter Doctor's Name" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Discharge Summary</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Final Diagnosis -->
+            <div class="col-md-6">
+                <label>Final Diagnosis</label>
+                @Html.TextBox("FinalDiagnosis", null, new { @class = "form-control", placeholder = "Enter Final Diagnosis" })
+            </div>
+
+            <!-- Medication -->
+            <div class="col-md-6">
+                <label>Medication</label>
+                @Html.TextBox("Medication", null, new { @class = "form-control", placeholder = "Enter Medication Details" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Follow-up Instructions -->
+            <div class="col-md-12">
+                <label>Follow-up Instructions</label>
+                @Html.TextArea("FollowUpInstructions", new { @class = "form-control", rows = "3", placeholder = "Enter Follow-up Instructions" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Generate Summary</button>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>IPD Reports</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Report Type -->
+            <div class="col-md-6">
+                <label>Report Type</label>
+                @Html.DropDownList("ReportType", new SelectList(new[] { "Select Report", "Bed Occupancy", "Treatment Duration", "Department-wise Stats" }), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-info btn-lg">Generate Report</button>
+        </div>
+    </div>
+</div>

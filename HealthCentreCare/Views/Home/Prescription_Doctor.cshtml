@@ -1,0 +1,120 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	Layout = "~/Views/Shared/_CommonLayout2.cshtml";
+}
+
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Doctor Prescription</h4>
+    </div>
+    <div class="card-body">
+        <!-- Patient Information -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Patient ID</label>
+                @Html.TextBox("PatientID", null, new { @class = "form-control", placeholder = "Enter Patient ID" })
+            </div>
+
+            <div class="col-md-6">
+                <label>Department</label>
+                @Html.DropDownList("Department", new SelectList(new[] { "Select Department", "Cardiology", "Neurology", "Orthopedics", "Dermatology" }), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <!-- Symptoms Submitted by Patient -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label>Symptoms Submitted by Patient</label>
+                <div class="border p-3">
+                    <ul id="patientSymptoms">
+                        <li>Fever</li>
+                        <li>Cough</li>
+                        <li>Body Pain</li>
+                        <!-- Dynamically populate this list based on patient's submitted symptoms -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Notes -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label>Additional Symptoms/Notes</label>
+                @Html.TextArea("AdditionalNotes", null, new { @class = "form-control", rows = 3, placeholder = "Enter additional symptoms or notes" })
+            </div>
+        </div>
+
+        <!-- Medicine Prescription Table -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label>Prescribed Medicines</label>
+                <table class="table table-bordered" id="medicineTable">
+                    <thead>
+                        <tr>
+                            <th>Medicine Name</th>
+                            <th>Quantity</th>
+                            <th>Dosage</th>
+                            <th>Duration</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Html.TextBox("MedicineName1", null, new { @class = "form-control", placeholder = "Enter Medicine" })</td>
+                            <td>@Html.TextBox("Quantity1", null, new { @class = "form-control", placeholder = "Enter Quantity" })</td>
+                            <td>@Html.TextBox("Dosage1", null, new { @class = "form-control", placeholder = "Dosage (e.g., 1-0-1)" })</td>
+                            <td>@Html.TextBox("Duration1", null, new { @class = "form-control", placeholder = "Duration (e.g., 5 days)" })</td>
+                            <td><button type="button" class="btn btn-danger" onclick="removeMedicineRow(this)">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary" onclick="addMedicineRow()">Add Medicine</button>
+            </div>
+        </div>
+
+        <!-- Lab Tests -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label>Recommended Lab Tests</label>
+                @Html.TextArea("LabTests", null, new { @class = "form-control", rows = 2, placeholder = "Enter Lab Tests to be Conducted" })
+            </div>
+        </div>
+
+        <!-- Advice -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label>Doctor's Advice</label>
+                @Html.TextArea("DoctorAdvice", null, new { @class = "form-control", rows = 3, placeholder = "Enter Advice" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg">Submit Prescription</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function addMedicineRow() {
+        var table = document.getElementById("medicineTable").getElementsByTagName('tbody')[0];
+        var newRow = table.insertRow();
+
+        newRow.innerHTML = `
+            <td><input type="text" class="form-control" placeholder="Enter Medicine"></td>
+            <td><input type="text" class="form-control" placeholder="Enter Quantity"></td>
+            <td><input type="text" class="form-control" placeholder="Dosage (e.g., 1-0-1)"></td>
+            <td><input type="text" class="form-control" placeholder="Duration (e.g., 5 days)"></td>
+            <td><button type="button" class="btn btn-danger" onclick="removeMedicineRow(this)">Remove</button></td>
+        `;
+    }
+
+    function removeMedicineRow(button) {
+        var row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
+</script>
+
+

@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_CommonLayout2.cshtml";
+}
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Billing Page</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Patient ID -->
+            <div class="col-md-6">
+                <label>Patient ID</label>
+                @Html.TextBox("PatientID", null, new { @class = "form-control", placeholder = "Enter Patient ID" })
+            </div>
+
+            <!-- Bill Date -->
+            <div class="col-md-6">
+                <label>Bill Date</label>
+                @Html.TextBox("BillDate", null, new { @class = "form-control", type = "date" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Amount -->
+            <div class="col-md-6">
+                <label>Amount</label>
+                @Html.TextBox("Amount", null, new { @class = "form-control", placeholder = "Enter Amount" })
+            </div>
+
+            <!-- Payment Method -->
+            <div class="col-md-6">
+                <label>Payment Method</label>
+                @Html.DropDownList("PaymentMethod", new SelectList(new[] { "Select Payment Method", "Cash", "Credit Card", "Debit Card", "Online Transfer" }), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        </div>
+    </div>
+</div>

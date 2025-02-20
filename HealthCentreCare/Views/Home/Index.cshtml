@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Open Multiple Pages";
+}
+
+<h2>Opening Multiple Pages...</h2>
+<p>This page will automatically open multiple pages in new tabs.</p>
+
+<script>
+    function openMultiplePages() {
+        let pages = [
+            "/Admin",
+            "/Appointment",
+            "/Bill",
+            "/Cancel_Appointment",
+            "/Doctor",
+            "/Get_in_Touch",
+            "/Home",
+            "/Index",
+            "/IPD_Inpatient_Department",
+            "/Login",
+            "/New_Registration",
+            "/OPD_Outpatient_Department",
+            "/Patient",
+            "/Prescription_Doctor",
+            "/Prescription_Patient",
+            "/Privacy",
+            "/View_Appointment"
+        ];
+
+        pages.forEach(page => {
+            window.open(page, '_blank');
+        });
+    }
+
+    // Automatically open multiple pages when the page loads
+    window.onload = function() {
+        openMultiplePages();
+    };
+</script>

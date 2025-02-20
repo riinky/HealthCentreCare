@@ -1,0 +1,150 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_CommonLayout2.cshtml";
+}
+
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Prescription Details</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Doctor Name -->
+            <div class="col-md-6">
+                <label>Doctor Name</label>
+                <p class="form-control-plaintext" id="DoctorName">Dr. John Doe</p>
+            </div>
+
+            <!-- Department -->
+            <div class="col-md-6">
+                <label>Department</label>
+                <p class="form-control-plaintext" id="Department">Cardiology</p>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Prescribed Medicines Table -->
+            <div class="col-md-12">
+                <label>Prescribed Medicines & Total Price</label>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Medicine Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Paracetamol</td>
+                            <td>10 Tablets</td>
+                            <td>$5</td>
+                        </tr>
+                        <tr>
+                            <td>Ibuprofen</td>
+                            <td>5 Tablets</td>
+                            <td>$7</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="2">Total Price</th>
+                            <th>$12</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+           @*  <!-- Payment for Medicines -->
+            <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-primary btn-lg">Pay for Medicines</button>
+            </div>
+        </div> *@
+
+        <div class="row mb-3">
+            <!-- Lab Tests Table -->
+            <div class="col-md-12">
+                <label>Lab Tests & Total Price</label>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Test Name</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Blood Test</td>
+                            <td>$20</td>
+                        </tr>
+                        <tr>
+                            <td>X-Ray</td>
+                            <td>$50</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total Price</th>
+                            <th>$70</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        @*     <!-- Payment for Lab Tests -->
+            <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-primary btn-lg">Pay for Lab Tests</button>
+            </div>
+        </div> *@
+
+        <div class="row mb-3">
+            <!-- Recommendations Table -->
+            <div class="col-md-12">
+                <label>Recommendations</label>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Medicine Name</th>
+                            <th>When to Take</th>
+                            <th>Dosage</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Paracetamol</td>
+                            <td>After Meals</td>
+                            <td>1 Tablet</td>
+                            <td>5 Days</td>
+                        </tr>
+                        <tr>
+                            <td>Ibuprofen</td>
+                            <td>Before Sleep</td>
+                            <td>1 Tablet</td>
+                            <td>3 Days</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Extra Advice -->
+            <div class="col-md-12">
+                <label>Extra Advice</label>
+                <p class="form-control-plaintext">
+                    Drink plenty of water and get adequate rest. Avoid spicy food
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,223 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurse Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .nav-item {
+            margin-right: 20px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Nurse Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="patientListLink">Patient List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="schedulesLink">Schedules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="medicationLink">Medication</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nurse Jane Doe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" id="mainContainer">
+        <div id="patientList">
+            <div class="card">
+                <div class="card-header">
+                    Patient List
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Medical History</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patientListTable">
+                            <!-- Patient list data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="schedules" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    Schedules
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Patient Name</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedulesTable">
+                            <!-- Schedules data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="medication" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    Medication
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Medication</th>
+                                <th>Dosage</th>
+                            </tr>
+                        </thead>
+                        <tbody id="medicationTable">
+                            <!-- Medication data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="patientDetailsModal" tabindex="-1" role="dialog" aria-labelledby="patientDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="patientDetailsModalLabel">Patient Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 id="patientName"></h5>
+                    <p id="patientAge"></p>
+                    <p id="patientMedicalHistory"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Sample patient list data
+            var patientListData = [
+                { name: 'John Doe', age: 30, medicalHistory: 'Diabetes' },
+                { name: 'Jane Doe', age: 25, medicalHistory: 'Hypertension' },
+                { name: 'Bob Smith', age: 40, medicalHistory: 'Asthma' }
+            ];
+            // Sample schedules data
+            var schedulesData = [
+                { date: '2024-09-16', time: '10:00 AM', patientName: 'John Doe' },
+                { date: '2024-09-17', time: '11:00 AM', patientName: 'Jane Doe' },
+                { date: '2024-09-18', time: '12:00 PM', patientName: 'Bob Smith' }
+            ];
+            // Sample medication data
+            var medicationData = [
+                { patientName: 'John Doe', medication: 'Insulin', dosage: '10 units' },
+                { patientName: 'Jane Doe', medication: 'Aspirin', dosage: '81 mg' },
+                { patientName: 'Bob Smith', medication: 'Albuterol', dosage: '2 puffs' }
+            ];
+            // Populate patient list table
+            patientListData.forEach(function(patient) {
+                var row = '<tr>';
+                row += '<td><a href="#" data-name="' + patient.name + '" data-age="' + patient.age + '" data-medical-history="' + patient.medicalHistory + '">' + patient.name + '</a></td>';
+                row += '<td>' + patient.age + '</td>';
+                row += '<td>' + patient.medicalHistory + '</td>';
+                row += '</tr>';
+                $('#patientListTable').append(row);
+            });
+            // Populate schedules table
+            schedulesData.forEach(function(schedule) {
+                var row = '<tr>';
+                row += '<td>' + schedule.date + '</td>';
+                row += '<td>' + schedule.time + '</td>';
+                row += '<td>' + schedule.patientName + '</td>';
+                row += '</tr>';
+                $('#schedulesTable').append(row);
+
+
+
+
+            });
+            // Populate medication table
+            medicationData.forEach(function(medication) {
+                var row = '<tr>';
+                row += '<td>' + medication.patientName + '</td>';
+                row += '<td>' + medication.medication + '</td>';
+                row += '<td>' + medication.dosage + '</td>';
+                row += '</tr>';
+                $('#medicationTable').append(row);
+            });
+            // Show patient details modal when a patient's name is clicked
+            $(document).on('click', '#patientListTable a', function() {
+                var patientName = $(this).data('name');
+                var patientAge = $(this).data('age');
+                var patientMedicalHistory = $(this).data('medical-history');
+                $('#patientName').text(patientName);
+                $('#patientAge').text('Age: ' + patientAge);
+                $('#patientMedicalHistory').text('Medical History: ' + patientMedicalHistory);
+                $('#patientDetailsModal').modal('show');
+            });
+            // Show patient list, schedules, or medication when the corresponding link is clicked
+            $('#patientListLink').on('click', function() {
+                $('#patientList').show();
+                $('#schedules').hide();
+                $('#medication').hide();
+            });
+            $('#schedulesLink').on('click', function() {
+                $('#patientList').hide();
+                $('#schedules').show();
+                $('#medication').hide();
+            });
+            $('#medicationLink').on('click', function() {
+                $('#patientList').hide();
+                $('#schedules').hide();
+                $('#medication').show();
+            });
+        });
+    </script>
+</body>
+</html>

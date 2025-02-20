@@ -1,0 +1,100 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_CommonLayout2.cshtml";
+}
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Registration Page</h4>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+        {
+            <div class="row mb-3">
+                <!-- User Role Selection -->
+                <div class="col-md-6">
+                    <label>Register As:</label>
+                    @Html.DropDownList("UserRole", new SelectList(new[] { "Select Role", "Patient", "Doctor" }), new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <!--  Aadhaar Number -->
+                <div class="col-md-6">
+                    <label> Aadhaar Number</label>
+                    @Html.TextBox("AdhaarId", null, new { @class = "form-control", placeholder = "Enter Aadhaar Number" })
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <!-- Full Name -->
+                <div class="col-md-6">
+                    <label>Full Name</label>
+                    @Html.TextBox("FullName", null, new { @class = "form-control", placeholder = "Enter full name" })
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="col-md-6">
+                    <label>Date of Birth</label>
+                    @Html.TextBox("Dob", null, new { @class = "form-control", type = "date" })
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <!-- Gender -->
+                <div class="col-md-4">
+                    <label>Gender</label>
+                    @Html.DropDownList("Gender", new SelectList(new[] { "Select Gender", "Male", "Female", "Others" }), new { @class = "form-control" })
+                </div>
+
+                <!-- Blood Group -->
+                <div class="col-md-4">
+                    <label>Blood Group</label>
+                    @Html.DropDownList("BloodGroup", new SelectList(new[] { "Select Blood Group", "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-" }), new { @class = "form-control" })
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="col-md-4">
+                    <label>Mobile Number</label>
+                    @Html.TextBox("Mobile", null, new { @class = "form-control", placeholder = "Enter mobile number", type = "tel" })
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <!-- Email -->
+                <div class="col-md-6">
+                    <label>Email ID</label>
+                    @Html.TextBox("Email", null, new { @class = "form-control", placeholder = "Enter email", type = "email" })
+                </div>
+
+                <!-- Address -->
+                <div class="col-md-6">
+                    <label>Address</label>
+                    @Html.TextArea("Address", null, new { @class = "form-control", rows = "2", placeholder = "Enter your address" })
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <!-- Password -->
+                <div class="col-md-6">
+                    <label>Password</label>
+                    @Html.TextBox("Password", null, new { @class = "form-control", placeholder = "Enter password",  Type = "password" })
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="col-md-6">
+                    <label>Confirm Password</label>
+                    @Html.TextBox("ConfirmPassword", null, new { @class = "form-control", placeholder = "Re-enter password", Type = "password" })
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success btn-lg">Register</button>
+            </div>
+        }
+    </div>
+</div>
+
+
+       

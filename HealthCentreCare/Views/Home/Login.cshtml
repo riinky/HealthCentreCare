@@ -1,0 +1,107 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_CommonLayout2.cshtml";
+}
+<div class="card shadow-lg" style="max-width: 800px; margin: 2rem auto;">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0 text-center">LOGIN</h4>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            <!-- User Role Row -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    @Html.TextBox("RoleLabel", "USER ROLE", new
+                        {
+                            @class = "form-control form-control-lg bg-light mb-2",
+                            @readonly = "readonly",
+                            @style = "border: none; font-weight: bold; color: #2c3e50;"
+                        })
+                    @Html.DropDownList("UserRole",
+                             new SelectList(new[] { "Admin", "Patient", "Doctor" }),
+                             "Select Role",
+                             new { @class = "form-control form-control-lg border-primary" })
+                </div>
+            </div>
+
+            <!-- ID Input Row -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    @Html.TextBox("IdLabel", "ID", new
+                        {
+                            @class = "form-control form-control-lg bg-light mb-2",
+                            @readonly = "readonly",
+                            @style = "border: none; font-weight: bold; color: #2c3e50;"
+                        })
+                    @Html.TextBox("UserId", "", new
+                        {
+                            @class = "form-control form-control-lg border-primary",
+                            placeholder = "Enter your ID"
+                        })
+                </div>
+            </div>
+
+            <!-- Password Input Row -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    @Html.TextBox("PasswordLabel", "PASSWORD", new
+                        {
+                            @class = "form-control form-control-lg bg-light mb-2",
+                            @readonly = "readonly",
+                            @style = "border: none; font-weight: bold; color: #2c3e50;"
+                        })
+                    @Html.Password("Password", "", new
+                        {
+                            @class = "form-control form-control-lg border-primary",
+                            placeholder = "Enter your password"
+                        })
+                </div>
+            </div>
+
+            <!-- Submit Button Row -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg px-5 py-3 w-100">
+                        <i class="fas fa-sign-in-alt me-2"></i>LOGIN
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+        border: none;
+    }
+
+    .form-control-lg {
+        font-size: 1.1rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .form-control:focus {
+        border-color: #86a8e7;
+        box-shadow: 0 0 0 0.25rem rgba(134, 168, 231, 0.25);
+    }
+
+    .btn-primary {
+        background: #667eea;
+        border: none;
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+    input[readonly] {
+        background-color: #f8f9fa !important;
+        cursor: default;
+    }
+</style>

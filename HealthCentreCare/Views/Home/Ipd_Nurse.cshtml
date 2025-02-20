@@ -1,0 +1,176 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Nurse Section</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .patient-list {
+            margin-bottom: 20px;
+        }
+
+        .patient-profile-modal {
+            width: 80%;
+            margin: 40px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nurse Section</h1>
+    <div class="patient-list">
+        <h2>Patient List</h2>
+        <input type="search" id="patient-search" placeholder="Search patient by name or ID">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="patient-list-body">
+                <!-- patient list will be displayed here -->
+            </tbody>
+        </table>
+    </div>
+    <div class="patient-profile-modal" id="patient-profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="patient-profile-modal-title"></h5>
+                <button type="button" class="btn-close" aria-label="Close" onclick="closePatientProfileModal()"></button>
+            </div>
+            <div class="modal-body">
+                <h6>Medical Records:</h6>
+                <textarea id="medical-records" rows="10" cols="50" readonly></textarea>
+                <h6>Nursing Notes:</h6>
+                <textarea id="nursing-notes" rows="10" cols="50"></textarea>
+                <h6>Medication List:</h6>
+                <table class="table table-striped" id="medication-list">
+                    <thead>
+                        <tr>
+                            <th>Medication</th>
+                            <th>Dose</th>
+                            <th>Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody id="medication-list-body">
+                        <!-- medication list will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closePatientProfileModal()">Close</button>
+                <button type="button" class="btn btn-primary" onclick="updatePatientProfile()">Update</button>
+                <button type="button" class="btn btn-success" onclick="admitPatient()">Admit</button>
+                <button type="button" class="btn btn-danger" onclick="dischargePatient()">Discharge</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+        let patients = [
+            { id: 1, name: "John Doe", status: "Admitted" },
+            { id: 2, name: "Jane Doe", status: "Discharged" },
+            // add more patients here
+        ];
+        let patientListBody = document.getElementById("patient-list-body");
+        let patientSearchInput = document.getElementById("patient-search");
+        let patientProfileModal = document.getElementById("patient-profile-modal");
+        let patientProfileModalTitle = document.getElementById("patient-profile-modal-title");
+        let medicalRecordsTextarea = document.getElementById("medical-records");
+        let nursingNotesTextarea = document.getElementById("nursing-notes");
+        let medicationListTable = document.getElementById("medication-list");
+        let medicationListBody = document.getElementById("medication-list-body");
+
+        // display patient list on page load
+        displayPatientList();
+
+        // search patient by name or ID
+        patientSearchInput.addEventListener("input", searchPatient);
+
+        // view patient profile and medical records
+        patientListBody.addEventListener("click", viewPatientProfile);
+
+        // update patient status and nursing notes
+        function updatePatientProfile() {
+            // update patient profile logic here
+        }
+
+        // manage medication list
+        function manageMedicationList() {
+            // manage medication list logic here
+        }
+
+        // admit and discharge patients
+        function admitPatient() {
+            // admit patient logic here
+        }
+        function dischargePatient() {
+            // discharge patient logic here
+        }
+
+        // display patient list function
+        function displayPatientList() {
+            patientListBody.innerHTML = "";
+            patients.forEach((patient) => {
+                let row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${patient.id}</td>
+                    <td>${patient.name}</td>
+                    <td>${patient.status}</td>
+                    <td><button class="btn btn-primary" onclick="viewPatientProfile(${patient.id})">View Profile</button></td>
+                `;
+                patientListBody.appendChild(row);
+            });
+        }
+
+        // search patient function
+        function searchPatient() {
+            let searchQuery = patientSearchInput.value.toLowerCase();
+            let filteredPatients = patients.filter((patient) => {
+                return patient.name.toLowerCase().includes(searchQuery) || patient.id.toString().includes(searchQuery);
+            });
+            patientListBody.innerHTML = "";
+            filteredPatients.forEach((patient) => {
+                let row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${patient.id}</td>
+                    <td>${patient.name}</td>
+                    <td>${patient.status}</td>
+                    <td><button class="btn btn-primary" onclick="viewPatientProfile(${patient.id})">View Profile</button></td>
+                `;
+                patientListBody.appendChild(row);
+            });
+        }
+
+        // view patient profile function
+        function viewPatientProfile(patientId) {
+            let patient = patients.find((patient) => patient.id === patientId);
+            patientProfileModalTitle.textContent = patient.name;
+            medicalRecordsTextarea.value = "Medical records for " + patient.name;
+            nursingNotesTextarea.value = "Nursing notes for " + patient.name;
+            medicationListBody.innerHTML = "";
+            // display medication list for patient
+            patientProfileModal.style.display = "block";
+        }
+
+        // close patient profile modal function
+        function closePatientProfileModal() {
+            patientProfileModal.style.display = "none";
+        }
+    </script>
+</body>
+</html>

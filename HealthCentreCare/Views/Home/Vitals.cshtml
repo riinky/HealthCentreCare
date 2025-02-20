@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_CommonLayout2.cshtml";
+}
+
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Patient Vitals</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Patient ID -->
+            <div class="col-md-6">
+                <label>Patient ID</label>
+                @Html.TextBox("PatientId", null, new { @class = "form-control", placeholder = "Enter Patient ID" })
+            </div>
+        </div>
+        <div class="row mb-3">
+            <!-- Blood Pressure -->
+            <div class="col-md-4">
+                <label>Blood Pressure (BP)</label>
+                @Html.TextBox("BP", null, new { @class = "form-control", placeholder = "Enter Blood Pressure" })
+            </div>
+            <!-- Height -->
+            <div class="col-md-4">
+                <label>Height</label>
+                @Html.TextBox("Height", null, new { @class = "form-control", placeholder = "Enter Height" })
+            </div>
+            <!-- Weight -->
+            <div class="col-md-4">
+                <label>Weight</label>
+                @Html.TextBox("Weight", null, new { @class = "form-control", placeholder = "Enter Weight" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Symptoms -->
+            <div class="col-md-12">
+                <label>Symptoms</label>
+                @Html.TextArea("Symptoms", null, new { @class = "form-control", placeholder = "Describe Symptoms", rows = "4" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        </div>
+    </div>
+</div>
+

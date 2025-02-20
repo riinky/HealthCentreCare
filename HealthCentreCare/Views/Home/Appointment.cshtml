@@ -1,0 +1,135 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_CommonLayout2.cshtml";
+}
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Make Appointment</h4>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Create", "Appointments", FormMethod.Post))
+        {
+            <div class="row mb-3">
+                <!-- Date -->
+                <div class="col-md-6">
+                    <label for="Date">Date</label>
+                    @Html.TextBox("Date", null, new { @class = "form-control", @readonly = "readonly", placeholder = "YYYY-MM-DD", id = "date" })
+                </div>
+                <!-- Time -->
+                <div class="col-md-6">
+                    <label for="Time">Time</label>
+                    @Html.TextBox("Time", null, new { @class = "form-control", @readonly = "readonly", placeholder = "HH:mm", id = "time" })
+                </div>
+            </div>
+            <div class="row mb-3">
+                <!-- Name -->
+                <div class="col-md-6">
+                    <label for="Name">Name</label>
+                    @Html.TextBox("Name", null, new { @class = "form-control", id = "name" })
+                </div>
+                <!-- Email -->
+                <div class="col-md-6">
+                    <label for="Email">Email</label>
+                    @Html.TextBox("Email", null, new { @class = "form-control", type = "email", id = "email" })
+                </div>
+            </div>
+            <div class="row mb-3">
+                <!-- Phone -->
+                <div class="col-md-6">
+                    <label for="Phone">Phone</label>
+                    @Html.TextBox("Phone", null, new { @class = "form-control", id = "phone" })
+                </div>
+                <!-- Consultation Fee -->
+                <div class="col-md-6">
+                    <label for="ConsultationFee">Consultation Fee</label>
+                    @Html.TextBox("ConsultationFee", null, new { @class = "form-control", @readonly = "readonly", placeholder = "Consultation Fee" })
+                </div>
+            </div>
+            <div class="row mb-3">
+                <!-- Select Doctor -->
+                <div class="col-md-6">
+                    <label for="Doctor">Select Doctor</label>
+                    @Html.DropDownList("Doctor", new SelectList(new[] { "Select Doctor", "Doctor 1", "Doctor 2" }), new { @class = "form-control", id = "Doctor" })
+                </div>
+                <!-- Preferred Date/Time -->
+                <div class="col-md-6">
+                    <label for="PreferredDateTime">Preferred Date/Time</label>
+                    @Html.TextBox("PreferredDateTime", null, new { @class = "form-control", type = "datetime-local", id = "PreferredDateTime" })
+                </div>
+            </div>
+            <div class="row mb-3">
+                <!-- Symptoms/Reason -->
+                <div class="col-md-12">
+                    <label for="Symptoms">Symptoms/Reason</label>
+                    @Html.TextArea("Symptoms", null, new { @class = "form-control", placeholder = "Describe your symptoms or reason for appointment", rows = "3", id = "Symptoms" })
+                </div>
+            </div>
+            <div class="row mb-3">
+                <!-- Payment Method -->
+                <div class="col-md-6">
+                    <label for="PaymentMethod">Payment Method</label>
+                    @Html.DropDownList("PaymentMethod", new SelectList(new[] { "Select Payment Method", "Card", "UPI", "Net Banking" }), new { @class = "form-control", id = "PaymentMethod" })
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success btn-lg">Book Appointment</button>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+
+@* 
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Make Appointment</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Select Doctor -->
+            <div class="col-md-6">
+                <label>Select Doctor</label>
+                @Html.DropDownList("Doctor", new SelectList(new[] { "Select Doctor", "Doctor 1", "Doctor 2" }), new { @class = "form-control" })
+            </div>
+
+            <!-- Preferred Date/Time -->
+            <div class="col-md-6">
+                <label>Preferred Date/Time</label>
+                @Html.TextBox("PreferredDateTime", null, new { @class = "form-control", type = "datetime-local" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Symptoms/Reason -->
+            <div class="col-md-6">
+                <label>Symptoms/Reason</label>
+                @Html.TextArea("Symptoms", new { @class = "form-control", placeholder = "Describe your symptoms or reason for appointment" })
+            </div>
+
+@*             <!-- Consultation Fee -->
+            <div class="col-md-6">
+                <label>Consultation Fee</label>
+                @Html.TextBox("ConsultationFee", null, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div> *@
+
+        @* <div class="row mb-3">
+            <!-- Payment Method -->
+            <div class="col-md-6">
+                <label>Payment Method</label>
+                @Html.DropDownList("PaymentMethod", new SelectList(new[] { "Select Payment Method", "Card", "UPI", "Net Banking" }), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg">Book Appointment</button>
+           
+        </div>
+    </div>
+</div> *@ 

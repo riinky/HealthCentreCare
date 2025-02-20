@@ -1,0 +1,324 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - OPD Section</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Hospital Management System - OPD Section</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#registerPatientModal">Register Patient <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#searchPatientModal">Search Patient</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#patientHistoryModal">Patient History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#bookAppointmentModal">Book Appointment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#manageDoctorsModal">Manage Doctors</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="text-center">Hospital Management System - OPD Section</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">Patient List</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Patient Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Contact Number</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patientList">
+                        <!-- patient list will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- modals -->
+    <div class="modal fade" id="registerPatientModal" tabindex="-1" role="dialog" aria-labelledby="registerPatientModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPatientModalLabel">Register Patient</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerPatientForm">
+                        <div class="form-group">
+                            <label for="patientName">Patient Name</label>
+                            <input type="text" class="form-control" id="patientName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" class="form-control" id="age" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select class="form-control" id="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactNumber">Contact Number</label>
+                            <input type="tel" class="form-control" id="contactNumber" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="registerPatientBtn">Register Patient</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="searchPatientModal" tabindex="-1" role="dialog" aria-labelledby="searchPatientModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchPatientModalLabel">Search Patient</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="searchPatientForm">
+                        <div class="form-group">
+                            <label for="searchPatientName">Patient Name</label>
+                            <input type="text" class="form-control" id="searchPatientName" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="searchPatientBtn">Search Patient</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="patientHistoryModal" tabindex="-1" role="dialog" aria-labelledby="patientHistoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="patientHistoryModalLabel">Patient History</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2 id="patientHistoryName"></h2>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Doctor</th>
+                                <th>Diagnosis</th>
+                                <th>Treatment</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patientHistoryList">
+                            <!-- patient history list will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="bookAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="bookAppointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookAppointmentModalLabel">Book Appointment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="bookAppointmentForm">
+                        <div class="form-group">
+                            <label for="patientName">Patient Name</label>
+                            <input type="text" class="form-control" id="bookAppointmentPatientName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="doctor">Doctor</label>
+                            <select class="form-control" id="bookAppointmentDoctor" required>
+                                <option value="">Select Doctor</option>
+                                <option value="doctor1">Doctor 1</option>
+                                <option value="doctor2">Doctor 2</option>
+                                <option value="doctor3">Doctor 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" class="form-control" id="bookAppointmentDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <input type="time" class="form-control" id="bookAppointmentTime" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="bookAppointmentBtn">Book Appointment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="manageDoctorsModal" tabindex="-1" role="dialog" aria-labelledby="manageDoctorsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="manageDoctorsModalLabel">Manage Doctors</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Doctor List</h2>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Doctor Name</th>
+                                <th>Specialty</th>
+                                <th>Availability</th>
+                            </tr>
+                        </thead>
+                        <tbody id="doctorList">
+                            <!-- doctor list will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // register patient form submission
+            $('#registerPatientForm').submit(function(e) {
+                e.preventDefault();
+                var patientName = $('#patientName').val();
+                var age = $('#age').val();
+                var gender = $('#gender').val();
+                var contactNumber = $('#contactNumber').val();
+                // add patient to database
+                $.ajax({
+                    type: 'POST',
+                    url: '/register-patient',
+                    data: {
+                        patientName: patientName,
+                        age: age,
+                        gender: gender,
+                        contactNumber: contactNumber
+                    },
+                    success: function(data) {
+                        // update patient list
+                        $('#patientList').append('<tr><td>' + data.patientId + '</td><td>' + patientName + '</td><td>' + age + '</td><td>' + gender + '</td><td>' + contactNumber + '</td></tr>');
+                        // close modal
+                        $('#registerPatientModal').modal('hide');
+                    }
+                });
+            });
+            // search patient form submission
+            $('#searchPatientForm').submit(function(e) {
+                e.preventDefault();
+                var patientName = $('#searchPatientName').val();
+                // search patient in database
+                $.ajax({
+                    type: 'GET',
+                    url: '/search-patient',
+                    data: {
+                        patientName: patientName
+                    },
+                    success: function(data) {
+                        // update patient history list
+                        $('#patientHistoryList').empty();
+                        $.each(data, function(index, patient) {
+                            $('#patientHistoryList').append('<tr><td>' + patient.date + '</td><td>' + patient.doctor + '</td><td>' + patient.diagnosis + '</td><td>' + patient.treatment + '</td></tr>');
+                        });
+                        // update patient history name
+                        $('#patientHistoryName').text(patientName);
+                        // show patient history modal
+                        $('#patientHistoryModal').modal('show');
+                    }
+                });
+            });
+            // book appointment form submission
+            $('#bookAppointmentForm').submit(function(e) {
+                e.preventDefault();
+                var patientName = $('#bookAppointmentPatientName').val();
+                var doctor = $('#bookAppointmentDoctor').val();
+                var date = $('#bookAppointmentDate').val();
+                var time = $('#bookAppointmentTime').val();
+                // add appointment to database
+                $.ajax({
+                    type: 'POST',
+                    url: '/book-appointment',
+                    data: {
+                        patientName: patientName,
+                        doctor: doctor,
+                        date: date,
+                        time: time
+                    },
+                    success: function(data) {
+                        // update appointment schedule
+                        // close modal
+                        $('#bookAppointmentModal').modal('hide');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

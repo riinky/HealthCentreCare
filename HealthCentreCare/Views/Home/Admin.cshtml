@@ -1,0 +1,67 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Admin Dashboard</h4>
+    </div>
+    <div class="card-body">
+        <!-- User Management Section -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Search User</label>
+                @Html.TextBox("SearchUser", null, new { @class = "form-control", placeholder = "Enter user name or ID" })
+            </div>
+
+            <div class="col-md-6">
+                <label>Filter Users</label>
+                @Html.DropDownList("UserFilter", new SelectList(new[] { "All Users", "Patients", "Doctors", "Admins" }), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>User Name</label>
+                @Html.TextBox("UserName", null, new { @class = "form-control", placeholder = "Enter user name" })
+            </div>
+
+            <div class="col-md-6">
+                <label>User Role</label>
+                @Html.DropDownList("UserRole", new SelectList(new[] { "Select Role", "Patient", "Doctor", "Admin" }), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>User Status</label>
+                @Html.DropDownList("UserStatus", new SelectList(new[] { "Active", "Inactive", "Suspended" }), new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-6">
+                <label>Permissions</label>
+                @Html.TextBox("UserPermissions", null, new { @class = "form-control", placeholder = "Enter permissions" })
+            </div>
+        </div>
+
+        <!-- Billing Monitoring Section -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Billing Report</label>
+                @Html.DropDownList("BillingReport", new SelectList(new[] { "Select Report", "Daily", "Weekly", "Monthly" }), new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-6">
+                <label>Generate Report</label>
+                <button type="submit" class="btn btn-primary btn-block">Generate</button>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg">Save Changes</button>
+        </div>
+    </div>
+</div>

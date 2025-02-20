@@ -1,0 +1,79 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+
+<!-- Inline CSS for Patient Dashboard -->
+ <style>
+    /* Ensures images are uniform in size */
+    .dashboard-icon {
+        width: 359px; /* Fixed width */
+        height: 359px; /* Fixed height */
+        object-fit: cover; /* Ensures proper aspect ratio */
+        border-radius: 10px; /* Optional: rounded corners */
+        transition: transform 0.2s ease-in-out;
+    }
+
+    /* Centers and contains the image properly */
+    .dashboard-img-container {
+        width: 359px;
+        margin: auto;
+    }
+
+    /* Enlarge image slightly on hover */
+    .dashboard-icon:hover {
+        transform: scale(1.05);
+    }
+</style> 
+
+<!-- Patient Dashboard UI -->
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Patient Dashboard</h4>
+    </div>
+    <div class="card-body">
+        <div class="row text-center">
+            <!-- View/Edit Profile -->
+            <div class="col-md-3">
+                <a href="@Url.Action("Profile", "Patient")">
+                    <div class="dashboard-img-container">
+                        <img src="~/images/profile.jpg" alt="Profile" class="dashboard-icon">
+                    </div>
+                </a>
+                <h5 class="mt-2">View/Edit Profile</h5>
+            </div>
+
+            <!-- Book Appointments -->
+            <div class="col-md-3">
+                <a href="@Url.Action("BookAppointment", "Appointment")">
+                    <div class="dashboard-img-container">
+                        <img src="~/images/appointment.jpg" alt="Book Appointment" class="dashboard-icon">
+                    </div>
+                </a>
+                <h5 class="mt-2">Book Appointment</h5>
+            </div>
+
+            <!-- View Prescriptions -->
+            <div class="col-md-3">
+                <a href="@Url.Action("Prescription", "Patient")">
+                    <div class="dashboard-img-container">
+                        <img src="~/images/prescription.jpg" alt="Prescriptions" class="dashboard-icon">
+                    </div>
+                </a>
+                <h5 class="mt-2">View Prescriptions</h5>
+            </div>
+
+            <!-- Check Billing History -->
+            <div class="col-md-3">
+                <a href="@Url.Action("Billing", "Patient")">
+                    <div class="dashboard-img-container">
+                        <img src="~/images/billing.jpg" alt="Billing History" class="dashboard-icon">
+                    </div>
+                </a>
+                <h5 class="mt-2">Billing History</h5>
+            </div>
+        </div>
+    </div>
+</div>

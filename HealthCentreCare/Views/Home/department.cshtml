@@ -1,0 +1,380 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_CommonLayout2.cshtml";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Make Appointment</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Make Appointment</h1>
+    <form>
+        <div class="mb-3">
+            <label for="department" class="form-label">Department:</label>
+            <select class="form-select" id="department" aria-label="Default select example">
+                <option value="">Select Department</option>
+                <option value="allergy">Allergy</option>
+                <option value="anesthesiology">Anesthesiology</option>
+                <option value="cardiology">Cardiology</option>
+                <option value="dermatology">Dermatology</option>
+                <option value="endocrinology">Endocrinology</option>
+                <option value="gastroenterology">Gastroenterology</option>
+                <option value="general-surgery">General Surgery</option>
+                <option value="hematology">Hematology</option>
+                <option value="hepatology">Hepatology</option>
+                <option value="immunology">Immunology</option>
+                <option value="infectious-diseases">Infectious Diseases</option>
+                <option value="nephrology">Nephrology</option>
+                <option value="neurology">Neurology</option>
+                <option value="neurosurgery">Neurosurgery</option>
+                <option value="obstetrics-and-gynecology">Obstetrics and Gynecology</option>
+                <option value="oncology">Oncology</option>
+                <option value="ophthalmology">Ophthalmology</option>
+                <option value="orthopedic-surgery">Orthopedic Surgery</option>
+                <option value="otolaryngology">Otolaryngology</option>
+                <option value="pain-management">Pain Management</option>
+                <option value="pathology">Pathology</option>
+                <option value="pediatrics">Pediatrics</option>
+                <option value="physical-medicine-and-rehabilitation">Physical Medicine and Rehabilitation</option>
+                <option value="plastic-surgery">Plastic Surgery</option>
+                <option value="podiatry">Podiatry</option>
+                <option value="psychiatry">Psychiatry</option>
+                <option value="pulmonology">Pulmonology</option>
+                <option value="radiology">Radiology</option>
+                <option value="rheumatology">Rheumatology</option>
+                <option value="sleep-medicine">Sleep Medicine</option>
+                <option value="sports-medicine">Sports Medicine</option>
+                <option value="surgical-oncology">Surgical Oncology</option>
+                <option value="thoracic-surgery">Thoracic Surgery</option>
+                <option value="transplant">Transplant</option>
+                <option value="travel-medicine">Travel Medicine</option>
+                <option value="urology">Urology</option>
+                <option value="vascular-surgery">Vascular Surgery</option>
+                <option value="weight-loss-surgery">Weight Loss Surgery</option>
+                <option value="wound-care">Wound Care</option>
+            </select>
+        </div>
+        <div class="mb-3" id="symptoms-div">
+            <!-- Checkboxes will be populated here -->
+        </div>
+        <button type="button" class="btn btn-primary" id="submit-btn">Submit</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+
+               const departmentSelect = document.getElementById('department');
+        const symptomsDiv = document.getElementById('symptoms-div');
+
+        const symptoms = {
+            allergy: [
+                { label: 'Hives', value: 'hives' },
+                { label: 'Itching', value: 'itching' },
+                { label: 'Swelling', value: 'swelling' },
+                { label: 'Redness', value: 'redness' },
+                { label: 'Difficulty Breathing', value: 'difficulty-breathing' }
+            ],
+            anesthesiology: [
+                { label: 'Pain', value: 'pain' },
+                { label: 'Numbness', value: 'numbness' },
+                { label: 'Weakness', value: 'weakness' },
+                { label: 'Dizziness', value: 'dizziness' },
+                { label: 'Nausea', value: 'nausea' }
+            ],
+            cardiology: [
+                { label: 'Chest Pain', value: 'chest-pain' },
+                { label: 'Shortness of Breath', value: 'shortness-of-breath' },
+                { label: 'Dizziness', value: 'dizziness' },
+                { label: 'Fatigue', value: 'fatigue' },
+                { label: 'Palpitations', value: 'palpitations' }
+            ],
+            dermatology: [
+                { label: 'Skin Rash', value: 'skin-rash' },
+                { label: 'Acne', value: 'acne' },
+                { label: 'Psoriasis', value: 'psoriasis' },
+                { label: 'Eczema', value: 'eczema' },
+                { label: 'Skin Cancer', value: 'skin-cancer' }
+            ],
+            endocrinology: [
+                { label: 'Diabetes', value: 'diabetes' },
+                { label: 'Thyroid Problems', value: 'thyroid-problems' },
+                { label: 'Hormonal Imbalances', value: 'hormonal-imbalance' },
+                { label: 'Osteoporosis', value: 'osteoporosis' },
+                { label: 'Adrenal Gland Disorders', value: 'adrenal-gland-disorders' }
+            ],
+            gastroenterology: [
+                { label: 'Abdominal Pain', value: 'abdominal-pain' },
+                { label: 'Nausea', value: 'nausea' },
+                { label: 'Vomiting', value: 'vomiting' },
+                { label: 'Diarrhea', value: 'diarrhea' },
+                { label: 'Constipation', value: 'constipation' }
+            ],
+            generalSurgery: [
+                { label: 'Appendicitis', value: 'appendicitis' },
+                { label: 'Hernia', value: 'hernia' },
+                { label: 'Gallstones', value: 'gallstones' },
+                { label: 'Breast Cancer', value: 'breast-cancer' },
+                { label: 'Skin Cancer', value: 'skin-cancer' }
+            ],
+            hematology: [
+                { label: 'Anemia', value: 'anemia' },
+                { label: 'Bleeding Disorders', value: 'bleeding-disorders' },
+                { label: 'Blood Cancers', value: 'blood-cancers' },
+                { label: 'Bone Marrow Failure', value: 'bone-marrow-failure' },
+                { label: 'Sickle Cell Disease', value: 'sickle-cell-disease' }
+            ],
+            hepatology: [
+                { label: 'Liver Disease', value: 'liver-disease' },
+                { label: 'Liver Cancer', value: 'liver-cancer' },
+                { label: 'Cirrhosis', value: 'cirrhosis' },
+                { label: 'Hepatitis', value: 'hepatitis' },
+                { label: 'Liver Transplant', value: 'liver-transplant' }
+            ],
+            immunology: [
+                { label: 'Immune System Disorders', value: 'immune-system-disorders' },
+                { label: 'Allergies', value: 'allergies' },
+                { label: 'Autoimmune Disorders', value: 'autoimmune-disorders' },
+                { label: 'Immunodeficiency', value: 'immunodeficiency' },
+                { label: 'Vaccine-Related Issues', value: 'vaccine-related-issues' }
+            ],
+                    infectiousDiseases: [
+            { label: 'Fever', value: 'fever' },
+            { label: 'Chills', value: 'chills' },
+            { label: 'Sweating', value: 'sweating' },
+            { label: 'Cough', value: 'cough' },
+            { label: 'Sore Throat', value: 'sore-throat' }
+        ],
+        nephrology: [
+            { label: 'Kidney Disease', value: 'kidney-disease' },
+            { label: 'Kidney Failure', value: 'kidney-failure' },
+            { label: 'Dialysis', value: 'dialysis' },
+            { label: 'Kidney Stones', value: 'kidney-stones' },
+            { label: 'Electrolyte Imbalance', value: 'electrolyte-imbalance' }
+        ],
+        neurology: [
+            { label: 'Headache', value: 'headache' },
+            { label: 'Numbness', value: 'numbness' },
+            { label: 'Weakness', value: 'weakness' },
+            { label: 'Seizures', value: 'seizures' },
+            { label: 'Stroke', value: 'stroke' }
+        ],
+        neurosurgery: [
+            { label: 'Head Injury', value: 'head-injury' },
+            { label: 'Brain Tumor', value: 'brain-tumor' },
+            { label: 'Spinal Cord Injury', value: 'spinal-cord-injury' },
+            { label: 'Back Pain', value: 'back-pain' },
+            { label: 'Neck Pain', value: 'neck-pain' }
+        ],
+        obstetricsAndGynecology: [
+            { label: 'Pregnancy', value: 'pregnancy' },
+            { label: 'Menstrual Irregularities', value: 'menstrual-irregularities' },
+            { label: 'Infertility', value: 'infertility' },
+            { label: 'Breast Cancer', value: 'breast-cancer' },
+            { label: 'Cervical Cancer', value: 'cervical-cancer' }
+        ],
+        oncology: [
+            { label: 'Cancer', value: 'cancer' },
+            { label: 'Tumors', value: 'tumors' },
+            { label: 'Unexplained Weight Loss', value: 'unexplained-weight-loss' },
+            { label: 'Fatigue', value: 'fatigue' },
+            { label: 'Pain', value: 'pain' }
+        ],
+        ophthalmology: [
+            { label: 'Vision Loss', value: 'vision-loss' },
+            { label: 'Eye Pain', value: 'eye-pain' },
+            { label: 'Double Vision', value: 'double-vision' },
+            { label: 'Blurred Vision', value: 'blurred-vision' },
+            { label: 'Cataracts', value: 'cataracts' }
+        ],
+        orthopedicSurgery: [
+            { label: 'Joint Pain', value: 'joint-pain' },
+            { label: 'Bone Fractures', value: 'bone-fractures' },
+            { label: 'Muscle Strains', value: 'muscle-strains' },
+            { label: 'Tendonitis', value: 'tendonitis' },
+            { label: 'Osteoporosis', value: 'osteoporosis' }
+        ],
+        otolaryngology: [
+            { label: 'Hearing Loss', value: 'hearing-loss' },
+            { label: 'Ear Pain', value: 'ear-pain' },
+            { label: 'Sinus Infections', value: 'sinus-infections' },
+            { label: 'Sore Throat', value: 'sore-throat' },
+            { label: 'Tonsillitis', value: 'tonsillitis' }
+        ],
+        painManagement: [
+            { label: 'Chronic Pain', value: 'chronic-pain' },
+            { label: 'Back Pain', value: 'back-pain' },
+            { label: 'Headaches', value: 'headaches' },
+            { label: 'Neck Pain', value: 'neck-pain' },
+            { label: 'Fibromyalgia', value: 'fibromyalgia' }
+        ],
+               pathology: [
+            { label: 'Cancer Diagnosis', value: 'cancer-diagnosis' },
+            { label: 'Infection Diagnosis', value: 'infection-diagnosis' },
+            { label: 'Disease Diagnosis', value: 'disease-diagnosis' },
+            { label: 'Blood Test Analysis', value: 'blood-test-analysis' },
+            { label: 'Tissue Sample Analysis', value: 'tissue-sample-analysis' }
+        ],
+        pediatrics: [
+            { label: 'Childhood Illnesses', value: 'childhood-illnesses' },
+            { label: 'Vaccinations', value: 'vaccinations' },
+            { label: 'Developmental Delays', value: 'developmental-delays' },
+            { label: 'Behavioral Issues', value: 'behavioral-issues' },
+            { label: 'Nutrition and Growth', value: 'nutrition-and-growth' }
+        ],
+        physicalMedicineAndRehabilitation: [
+            { label: 'Physical Disabilities', value: 'physical-disabilities' },
+            { label: 'Pain Management', value: 'pain-management' },
+            { label: 'Rehabilitation', value: 'rehabilitation' },
+            { label: 'Occupational Therapy', value: 'occupational-therapy' },
+            { label: 'Physical Therapy', value: 'physical-therapy' }
+        ],
+        plasticSurgery: [
+            { label: 'Cosmetic Surgery', value: 'cosmetic-surgery' },
+            { label: 'Reconstructive Surgery', value: 'reconstructive-surgery' },
+            { label: 'Burn Care', value: 'burn-care' },
+            { label: 'Wound Care', value: 'wound-care' },
+            { label: 'Skin Cancer Reconstruction', value: 'skin-cancer-reconstruction' }
+        ],
+        podiatry: [
+            { label: 'Foot Pain', value: 'foot-pain' },
+            { label: 'Ankle Pain', value: 'ankle-pain' },
+            { label: 'Ingrown Toenails', value: 'ingrown-toenails' },
+            { label: 'Fungal Infections', value: 'fungal-infections' },
+            { label: 'Diabetic Foot Care', value: 'diabetic-foot-care' }
+        ],
+        psychiatry: [
+            { label: 'Mental Health', value: 'mental-health' },
+            { label: 'Anxiety', value: 'anxiety' },
+            { label: 'Depression', value: 'depression' },
+            { label: 'Bipolar Disorder', value: 'bipolar-disorder' },
+            { label: 'Schizophrenia', value: 'schizophrenia' }
+        ],
+        pulmonology: [
+            { label: 'Lung Disease', value: 'lung-disease' },
+            { label: 'Asthma', value: 'asthma' },
+            { label: 'COPD', value: 'copd' },
+            { label: 'Pneumonia', value: 'pneumonia' },
+            { label: 'Sleep Apnea', value: 'sleep-apnea' }
+        ],
+        radiology: [
+            { label: 'Imaging Tests', value: 'imaging-tests' },
+            { label: 'X-rays', value: 'x-rays' },
+            { label: 'CT Scans', value: 'ct-scans' },
+            { label: 'MRI Scans', value: 'mri-scans' },
+            { label: 'Ultrasound', value: 'ultrasound' }
+        ],
+        rheumatology: [
+            { label: 'Arthritis', value: 'arthritis' },
+            { label: 'Joint Pain', value: 'joint-pain' },
+            { label: 'Muscle Pain', value: 'muscle-pain' },
+            { label: 'Lupus', value: 'lupus' },
+            { label: 'Rheumatoid Arthritis', value: 'rheumatoid-arthritis' }
+        ],
+        sleepMedicine: [
+            { label: 'Sleep Disorders', value: 'sleep-disorders' },
+            { label: 'Insomnia', value: 'insomnia' },
+            { label: 'Sleep Apnea', value: 'sleep-apnea' },
+            { label: 'Narcolepsy', value: 'narcolepsy' },
+            { label: 'Restless Leg Syndrome', value: 'restless-leg-syndrome' }
+        ],
+               sportsMedicine: [
+                { label: 'Sports Injuries', value: 'sports-injuries' },
+                { label: 'Concussions', value: 'concussions' },
+                { label: 'Muscle Strains', value: 'muscle-strains' },
+                { label: 'Ligament Sprains', value: 'ligament-sprains' },
+                { label: 'Tendonitis', value: 'tendonitis' }
+            ],
+            surgicalOncology: [
+                { label: 'Cancer Surgery', value: 'cancer-surgery' },
+                { label: 'Tumor Removal', value: 'tumor-removal' },
+                { label: 'Biopsy', value: 'biopsy' },
+                { label: 'Cancer Reconstruction', value: 'cancer-reconstruction' },
+                { label: 'Surgical Oncology Consultation', value: 'surgical-oncology-consultation' }
+            ],
+            thoracicSurgery: [
+                { label: 'Lung Surgery', value: 'lung-surgery' },
+                { label: 'Heart Surgery', value: 'heart-surgery' },
+                { label: 'Esophageal Surgery', value: 'esophageal-surgery' },
+                { label: 'Thoracic Tumor Surgery', value: 'thoracic-tumor-surgery' },
+                { label: 'Lung Transplant', value: 'lung-transplant' }
+            ],
+            transplant: [
+                { label: 'Organ Transplant', value: 'organ-transplant' },
+                { label: 'Kidney Transplant', value: 'kidney-transplant' },
+                { label: 'Liver Transplant', value: 'liver-transplant' },
+                { label: 'Heart Transplant', value: 'heart-transplant' },
+                { label: 'Lung Transplant', value: 'lung-transplant' }
+            ],
+            travelMedicine: [
+                { label: 'Travel Vaccinations', value: 'travel-vaccinations' },
+                { label: 'Travel Illnesses', value: 'travel-illnesses' },
+                { label: 'Travel Health Advice', value: 'travel-health-advice' },
+                { label: 'Malaria Prophylaxis', value: 'malaria-prophylaxis' },
+                { label: 'Traveler Diarrhea', value: 'travelers-diarrhea' }
+            ],
+            urology: [
+                { label: 'Urinary Tract Infections', value: 'urinary-tract-infections' },
+                { label: 'Kidney Stones', value: 'kidney-stones' },
+                { label: 'Prostate Issues', value: 'prostate-issues' },
+                { label: 'Bladder Cancer', value: 'bladder-cancer' },
+                { label: 'Kidney Cancer', value: 'kidney-cancer' }
+            ],
+            vascularSurgery: [
+                { label: 'Varicose Veins', value: 'varicose-veins' },
+                { label: 'Aneurysms', value: 'aneurysms' },
+                { label: 'Blood Clots', value: 'blood-clots' },
+                { label: 'Peripheral Artery Disease', value: 'peripheral-artery-disease' },
+                { label: 'Carotid Artery Disease', value: 'carotid-artery-disease' }
+            ],
+            weightLossSurgery: [
+                { label: 'Bariatric Surgery', value: 'bariatric-surgery' },
+                { label: 'Weight Loss', value: 'weight-loss' },
+                { label: 'Obesity Treatment', value: 'obesity-treatment' },
+                { label: 'Gastric Bypass', value: 'gastric-bypass' },
+                { label: 'Lap Band Surgery', value: 'lap-band-surgery' }
+            ],
+            woundCare: [
+                { label: 'Wound Healing', value: 'wound-healing' },
+                { label: 'Wound Infections', value: 'wound-infections' },
+                { label: 'Wound Care Management', value: 'wound-care-management' },
+                { label: 'Diabetic Foot Care', value: 'diabetic-foot-care' },
+                { label: 'Pressure Ulcer Care', value: 'pressure-ulcer-care' }
+            ]
+        };
+
+        departmentSelect.addEventListener('change', (e) => {
+            const selectedDepartment = e.target.value;
+            symptomsDiv.innerHTML = '';
+
+            if (selectedDepartment) {
+                const departmentSymptoms = symptoms[selectedDepartment];
+                departmentSymptoms.forEach((symptom) => {
+                    const checkbox = document.createElement('div');
+                    checkbox.innerHTML = `
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="${symptom.value}" id="${symptom.value}">
+                            <label class="form-check-label" for="${symptom.value}">
+                                ${symptom.label}
+                            </label>
+                        </div>
+                    `;
+                    symptomsDiv.appendChild(checkbox);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

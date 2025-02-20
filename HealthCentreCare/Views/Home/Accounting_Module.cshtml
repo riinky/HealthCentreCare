@@ -1,0 +1,118 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_CommonLayout2.cshtml";    
+}
+
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Receipts/Payment Vouchers</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Voucher Type -->
+            <div class="col-md-6">
+                <label>Voucher Type</label>
+                @Html.DropDownList("VoucherType", new SelectList(new[] { "Select Type", "Receipt", "Payment" }), new { @class = "form-control" })
+            </div>
+
+            <!-- Amount -->
+            <div class="col-md-6">
+                <label>Amount</label>
+                @Html.TextBox("Amount", null, new { @class = "form-control", placeholder = "Enter Amount" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Party Name -->
+            <div class="col-md-6">
+                <label>Party Name</label>
+                @Html.TextBox("PartyName", null, new { @class = "form-control", placeholder = "Enter Party Name" })
+            </div>
+
+            <!-- Date -->
+            <div class="col-md-6">
+                <label>Date</label>
+                @Html.TextBox("TransactionDate", null, new { @class = "form-control", type = "date" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Cashbook & Bank Accounts</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Transaction Date -->
+            <div class="col-md-6">
+                <label>Transaction Date</label>
+                @Html.TextBox("CashbookDate", null, new { @class = "form-control", type = "date" })
+            </div>
+
+            <!-- Description -->
+            <div class="col-md-6">
+                <label>Description</label>
+                @Html.TextBox("Description", null, new { @class = "form-control", placeholder = "Enter Description" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Debit Amount -->
+            <div class="col-md-6">
+                <label>Debit Amount</label>
+                @Html.TextBox("DebitAmount", null, new { @class = "form-control", placeholder = "Enter Debit Amount" })
+            </div>
+
+            <!-- Credit Amount -->
+            <div class="col-md-6">
+                <label>Credit Amount</label>
+                @Html.TextBox("CreditAmount", null, new { @class = "form-control", placeholder = "Enter Credit Amount" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h4>Vendor Management</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <!-- Vendor Name -->
+            <div class="col-md-6">
+                <label>Vendor Name</label>
+                @Html.TextBox("VendorName", null, new { @class = "form-control", placeholder = "Enter Vendor Name" })
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-6">
+                <label>Contact</label>
+                @Html.TextBox("VendorContact", null, new { @class = "form-control", placeholder = "Enter Contact Details" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <!-- Services -->
+            <div class="col-md-12">
+                <label>Services</label>
+                @Html.TextBox("VendorServices", null, new { @class = "form-control", placeholder = "Enter Services Provided" })
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        </div>
+    </div>
+</div>
